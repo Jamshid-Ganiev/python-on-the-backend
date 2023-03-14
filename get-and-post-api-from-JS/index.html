@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits API</title>
+</head>
+<body>
+    <h2>Fruits' list:</h2>
+    <select id="listFruit"></select>
+    <label for="">Add new fruit</label> <input type="text" id="textFruit">
+    <button id="btnAdd">add Fruit</button>
+
+    <script>
+        const listFruit = document.getElementById("listFruit")
+        const addFruit = document.getElementById("btnAdd")
+        const textFruit = document.getElementById('textFruit')
+
+        fetch("http://localhost:8882/fruits")
+        .then(response => response.json())
+        .then(jsonResponse => jsonResponse.forEach(fruit =>{
+            let o = document.createElement("option")
+            o.textContent = fruit
+            listFruit.appendChild(o)
+        }))
+
+
+        addFruit.addEventListener("click", e => {
+            let fruit = textFruit.value;
+            fetch(`http://localhost:8882/fruits?fruit=${fruit}`, {"method": "POST"})
+            .then(response => response.json())
+            .then(jsonResponse => alert(jsonResponse.message))
+        })
+
+
+
+    </script>
+</body>
+</html>

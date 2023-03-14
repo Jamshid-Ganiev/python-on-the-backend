@@ -1,0 +1,12 @@
+Apple
+Banana
+Pomogranate
+Grapes
+Strawberry
+Lemon
+Lemon
+peach
+pear
+{fruit}
+{fruit}
+Orange
